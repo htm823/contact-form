@@ -16,34 +16,39 @@ return [
 
 	// Administrator notification email
 	'admin' => [
-		'subject' => 'New enquiry received via the contact form',
+		'subject' => '新しいお問い合わせがあります',
 
 		'body_header' => <<<TEXT
-			A new enquiry has been submitted via the contact form.
+お問い合わせフォームから送信がありました。
 
-			Enquiry details
-			--------------------------
+お問い合わせ内容
+--------------------------
 
-		TEXT,
+TEXT,
+
 
 		'body_footer' => '',
 	],
 
 	// Automatic reply email
 	'reply' => [
-		'subject' => 'Thank you for your enquiry',
+		'subject' => 'お問い合わせありがとうございます',
 
 		'body_header' => <<<TEXT
-			Thank you for getting in touch.
-			Your enquiry has been received with the following details.
+この度はお問い合わせいただきありがとうございます。
 
-			Enquiry details
-			--------------------------
-		TEXT,
+以下の内容でお問い合わせを受け付けました。
+
+お問い合わせ内容
+--------------------------
+
+TEXT,
 
 		'body_footer' => <<<TEXT
-			This is an automated message set form an unmonitored email address.
-			Please do not reply to this email.
-		TEXT
+
+本メールは送信専用メールアドレスから自動送信されています。
+このメールにご返信いただいてもご対応できません。
+
+TEXT,
 	],
 ];
