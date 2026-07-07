@@ -1,10 +1,12 @@
 <?php
 
+require_once(__DIR__ . '/../config/init.php');
+
 session_start();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
   $errors = [];
-  
+
   if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) ) {
     $errors[] = 'メールアドレスを入力してください。';
   }
@@ -46,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["errors"] = $errors;
     $_SESSION["POST"] = $_POST;
     header("Location: ../input/index.php");
-  } 
+  }
 }
 ?>
 
