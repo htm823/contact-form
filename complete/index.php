@@ -7,8 +7,6 @@ $mailConfig = require_once(__DIR__ . '/../config/mail.php');
 
 session_start();
 
-ini_set('display_errors', 0);
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -17,36 +15,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$posts = [
 		0 => [
 			'label' => '名前',
-			'value' => h($_POST['name']),
+			'value' => html_escape($_POST['name']),
 		],
 		1 => [
 			'label' => 'フリガナ',
-			'value' => h($_POST['kana']),
+			'value' => html_escape($_POST['kana']),
 		],
 		2 => [
 			'label' => 'メールアドレス',
-			'value' => h($_POST['email']),
+			'value' => html_escape($_POST['email']),
 		],
 		3 => [
 			'label' => '電話番号',
-			'value' => h($_POST['tel']),
+			'value' => html_escape($_POST['tel']),
 		],
 		4 => [
 			'label' => '住所',
-			'value' => h('〒' . $_POST['postal_code_1'] . '-' . $_POST['postal_code_2'] . ' ' . $_POST['address']),
+			'value' => html_escape('〒' . $_POST['postal_code_1'] . '-' . $_POST['postal_code_2'] . ' ' . $_POST['address']),
 		],
 		5 => [
 			'label' => '性別',
-			'value' => h($_POST['gender']),
+			'value' => html_escape($_POST['gender']),
 		],
 		6 => [
 			'label' => '応募内容',
-			'value' => h($_POST['content']),
+			'value' => html_escape($_POST['content']),
 		],
 
 		7 => [
 			'label' => '質問内容',
-			'value' => h($_POST['message']),
+			'value' => html_escape($_POST['message']),
 		],
 	];
 

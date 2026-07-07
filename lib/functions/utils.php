@@ -1,11 +1,12 @@
 <?php
 
-function mb($txt)
+/**
+ * エスケープ
+ *
+ * @param ?string $str
+ * @return string
+ */
+function html_escape(?string $str): string
 {
-	return mb_encode_mimeheader($txt);
-}
-
-function h($str)
-{
-	return htmlspecialchars($str, ENT_COMPAT, 'UTF-8');
+	return htmlspecialchars($str ?? '', ENT_QUOTES, 'UTF-8');
 }
