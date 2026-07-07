@@ -1,5 +1,6 @@
 <?php
 
+require_once(__DIR__ . '/../lib/functions/utils.php');
 require_once(__DIR__ . '/../config/init.php');
 
 session_start();
@@ -42,7 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 
-ini_set('display_errors', 0);
+// Subjects
+$contents = [
+	'full-time' => 'フルタイム',
+	'part-time' => 'パートタイム',
+	'internship' => 'インターンシップ',
+];
 
 ?>
 
@@ -65,51 +71,61 @@ ini_set('display_errors', 0);
 			<tbody>
 				<tr>
 					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">お名前</th>
-					<td><?php echo $_POST['name']; ?></td>
-					<input type="hidden" name="name" value="<?php echo $_POST['name']; ?>">
+					<td><?php echo html_escape($_POST['name']); ?></td>
+					<input type="hidden" name="name" value="<?php echo html_escape($_POST['name']); ?>">
 				</tr>
 				<tr>
 					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">フリガナ</th>
-					<td><?php echo $_POST['kana']; ?></td>
-					<input type="hidden" name="kana" value="<?php echo $_POST['kana']; ?>">
+					<td><?php echo html_escape($_POST['kana']); ?></td>
+					<input type="hidden" name="kana" value="<?php echo html_escape($_POST['kana']); ?>">
 				</tr>
 				<tr>
 					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">メールアドレス</th>
-					<td><?php echo $_POST['email']; ?></td>
-					<input type="hidden" name="email" value="<?php echo $_POST['email']; ?>">
+					<td><?php echo html_escape($_POST['email']); ?></td>
+					<input type="hidden" name="email" value="<?php echo html_escape($_POST['email']); ?>">
 				</tr>
 				<tr>
 					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">電話番号</th>
-					<td><?php echo $_POST['tel']; ?></td>
-					<input type="hidden" name="tel" value="<?php echo $_POST['tel']; ?>">
+					<td><?php echo html_escape($_POST['tel']); ?></td>
+					<input type="hidden" name="tel" value="<?php echo html_escape($_POST['tel']); ?>">
 				</tr>
 				<tr>
 					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">ご住所</th>
 					<td>
 						<span>〒</span>
-						<?php echo $_POST['postal_code_1']; ?>
-						<input type="hidden" name="postal_code_1" value="<?php echo $_POST['postal_code_1']; ?>">
+						<?php echo html_escape($_POST['postal_code_1']); ?>
+						<input type="hidden" name="postal_code_1" value="<?php echo html_escape($_POST['postal_code_1']); ?>">
 						<span>-</span>
-						<?php echo $_POST['postal_code_2']; ?><br>
-						<input type="hidden" name="postal_code_2" value="<?php echo $_POST['postal_code_2']; ?>">
-						<?php echo $_POST['address']; ?>
+						<?php echo html_escape($_POST['postal_code_2']); ?><br>
+						<input type="hidden" name="postal_code_2" value="<?php echo html_escape($_POST['postal_code_2']); ?>">
+						<?php echo html_escape($_POST['address']); ?>
 					</td>
-					<input type="hidden" name="address" value="<?php echo $_POST['address']; ?>">
+					<input type="hidden" name="address" value="<?php echo html_escape($_POST['address']); ?>">
 				</tr>
 				<tr>
 					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">性別</th>
-					<td><?php echo $_POST['gender']; ?></td>
-					<input type="hidden" name="gender" value="<?php echo $_POST['gender']; ?>">
+					<td>
+						<?php echo $_POST['gender'] === 'man' ? '男性' : '女性'; ?>
+					</td>
+					<input type="hidden" name="gender" value="<?php echo html_escape($_POST['gender']); ?>">
 				</tr>
 				<tr>
 					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">応募内容</th>
-					<td><?php echo $_POST['content']; ?></td>
-					<input type="hidden" name="content" value="<?php echo $_POST['content']; ?>">
+					<td>
+						<?php
+							foreach ($contents as $key => $content) {
+								if ($_POST['content'] === $key) {
+									echo $content;
+								}
+							}
+						?>
+					</td>
+					<input type="hidden" name="content" value="<?php echo html_escape($_POST['content']); ?>">
 				</tr>
 				<tr>
-					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">その他ご質問などありましたらご記入ください</th>
-					<td><?php echo nl2br($_POST['message']); ?></td>
-					<input type="hidden" name="message" value="<?php echo $_POST['message']; ?>">
+					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">ご質問等</th>
+					<td><?php echo nl2br(html_escape($_POST['message'])); ?></td>
+					<input type="hidden" name="message" value="<?php echo nl2br(html_escape($_POST['message'])); ?>">
 				</tr>
 			</tbody>
 		</table>
