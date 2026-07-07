@@ -30,162 +30,164 @@ $contents = [
 </head>
 
 <body class="bg-light">
-	<form action="../confirm/index.php" method="post" class="h-adr">
-		<span class="p-country-name" style="display:none;">Japan</span>
-		<p>
-			<span class="text-danger">*</span>の項目は入力必須項目です。必ず入力または選択してください。
-		</p>
+	<div class="container-lg pt-5 pb-5">
+		<form action="../confirm/index.php" method="post" class="h-adr">
+			<input type="hidden" class="p-country-name" value="Japan">
+			<p class="pb-4 mb-0">
+				<span class="text-danger">*</span>の項目は入力必須です。
+			</p>
 
-		<!-- Error messages -->
-		<?php if (isset($errors) && $errors) { ?>
-			<?php foreach ($errors as $error) { ?>
-				<div class="bg-danger text-white w-50 shadow-sm">
-					<i class="bi bi-exclamation-circle-fill"></i>
-					<?= html_escape($error); ?>
+			<!-- Error messages -->
+			<?php if (isset($errors) && $errors) { ?>
+				<div class="error-messages pb-4">
+					<?php foreach ($errors as $error) { ?>
+						<p class="text-danger mb-2"><i class="bi bi-exclamation-circle"></i><?= html_escape($error); ?></p>
+					<?php } ?>
 				</div>
 			<?php } ?>
-		<?php } ?>
 
-		<table class="table table-borderless bg-white shadow-sm p-3 bg-body-tertiary rounded">
-			<tbody>
-				<tr>
-					<th scope="row"><span class="text-danger">*</span>お名前</th>
-					<td>
-						<input
-							type="text"
-							class="form-control"
-							name="name"
-							autocomplete="off"
-							value="<?= old('name', $form_data); ?>">
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><span class="text-danger">*</span>フリガナ</th>
-					<td>
-						<input
-							type="text"
-							class="form-control"
-							name="kana"
-							autocomplete="off"
-							value="<?= old('kana', $form_data); ?>">
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><span class="text-danger">*</span>メールアドレス</th>
-					<td>
-						<input
-							type="email"
-							class="form-control"
-							name="email"
-							autocomplete="off"
-							value="<?= old('email', $form_data);; ?>">
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><span class="text-danger">*</span>電話番号</th>
-					<td>
-						<input
-							type="tel"
-							class="form-control"
-							name="tel"
-							autocomplete="off"
-							value="<?= old('tel', $form_data); ?>">
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><span class="text-danger">*</span>ご住所</th>
-					<td>
-						<div class="input-group mb-3">
-							<span class="input-group-text">〒</span>
+			<table class="table table-borderless bg-body-tertiary rounded">
+				<tbody>
+					<tr>
+						<th scope="row"><span class="text-danger">*</span>お名前</th>
+						<td>
 							<input
 								type="text"
 								class="form-control"
-								name="postal_code_1"
+								name="name"
 								autocomplete="off"
-								value="<?= old('postal_code_1', $form_data); ?>">
-							<span class="input-group-text bg-white">-</span>
+								placeholder="山田花子"
+								value="<?= old('name', $form_data); ?>">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><span class="text-danger">*</span>フリガナ</th>
+						<td>
 							<input
 								type="text"
 								class="form-control"
-								name="postal_code_2"
+								name="kana"
 								autocomplete="off"
-								value="<?= old('postal_code_2', $form_data); ?>">
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>
-						<input
-							type="text"
-							class="form-control p-region p-locality p-street-address p-extended-address"
-							name="address"
-							autocomplete="off"
-							value="<?= old('address', $form_data); ?>">
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">性別</th>
-					<td>
-						<div class="input-group-text bg-white shadow-sm p-3 bg-body-tertiary rounded">
-							<div class="form-check form-check-inline">
+								placeholder="ヤマダハナコ"
+								value="<?= old('kana', $form_data); ?>">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><span class="text-danger">*</span>メール</th>
+						<td>
+							<input
+								type="email"
+								class="form-control"
+								name="email"
+								autocomplete="off"
+								placeholder="example@gmail.com"
+								value="<?= old('email', $form_data);; ?>">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><span class="text-danger">*</span>電話番号</th>
+						<td>
+							<input
+								type="tel"
+								class="form-control"
+								name="tel"
+								autocomplete="off"
+								placeholder="080-8787-8787"
+								value="<?= old('tel', $form_data); ?>">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><span class="text-danger">*</span>郵便番号</th>
+						<td>
+							<div class="input-group">
+								<span class="input-group-text">〒</span>
 								<input
-									id="male"
-									class="form-check-input"
-									type="radio"
-									name="gender"
-									value="man"
-									<?= ($form_data['gender'] ?? '') === 'man' ? 'checked' : ''; ?>>
-								<label class="form-check-label" for="male">
-									男性
-								</label>
+									type="text"
+									class="p-postal-code form-control"
+									name="postal_code"
+									size="8"
+									maxlength="8"
+									autocomplete="off"
+									placeholder="130-0000"
+									value="<?= old('postal_code', $form_data); ?>">
 							</div>
-							<div class="form-check form-check-inline">
-								<input
-									id="female"
-									class="form-check-input"
-									type="radio"
-									name="gender"
-									value="woman"
-									<?= ($form_data['gender'] ?? '') === 'woman' ? 'checked' : ''; ?>>
-								<label class="form-check-label" for="female">
-									女性
-								</label>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><span class="text-danger">*</span>ご住所</th>
+						<td>
+							<input
+								type="text"
+								class="form-control p-region p-locality p-street-address p-extended-address"
+								name="address"
+								autocomplete="off"
+								placeholder="宮城県〇〇市〇〇町1-1　サニーマンション　108号室"
+								value="<?= old('address', $form_data); ?>">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">性別</th>
+						<td>
+							<div class="input-group-text bg-white shadow-sm bg-body-tertiary rounded">
+								<div class="form-check form-check-inline">
+									<input
+										id="male"
+										class="form-check-input"
+										type="radio"
+										name="gender"
+										value="man"
+										<?= ($form_data['gender'] ?? '') === 'man' ? 'checked' : ''; ?>>
+									<label class="form-check-label" for="male">
+										男性
+									</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input
+										id="female"
+										class="form-check-input"
+										type="radio"
+										name="gender"
+										value="woman"
+										<?= ($form_data['gender'] ?? '') === 'woman' ? 'checked' : ''; ?>>
+									<label class="form-check-label" for="female">
+										女性
+									</label>
+								</div>
 							</div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row"><span class="text-danger">*</span>応募内容</th>
-					<td>
-						<select class="form-control" name="content">
-							<option value="">-- 以下からご選択ください --</option>
-							<?php foreach ($contents as $key => $content) { ?>
-								<option
-									value="<?= $key; ?>"
-									<?= (isset($form_data['content']) && $form_data['content']) && $form_data['content'] === $key ? 'selected' : ''; ?>>
-									<?= $content; ?>
-								</option>
-							<?php } ?>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">ご質問等</th>
-					<td>
-						<textarea class="form-control" name="message"><?= old('message', $form_data); ?></textarea>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="d-grid gap-2 col-6 mx-auto">
-			<input
-				type="submit"
-				name="confirm"
-				value="内容確認ページへ"
-				class="btn btn-secondary shadow-sm">
-		</div>
-	</form>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><span class="text-danger">*</span>応募内容</th>
+						<td>
+							<select class="form-control" name="content">
+								<option value="">-- 以下からご選択ください --</option>
+								<?php foreach ($contents as $key => $content) { ?>
+									<option
+										value="<?= $key; ?>"
+										<?= (isset($form_data['content']) && $form_data['content']) && $form_data['content'] === $key ? 'selected' : ''; ?>>
+										<?= $content; ?>
+									</option>
+								<?php } ?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">ご質問等</th>
+						<td>
+							<textarea class="form-control" name="message" placeholder="例：書類のフォーマットが知りたい"><?= old('message', $form_data); ?></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="d-grid col-6 pt-4 mx-auto">
+				<input
+					type="submit"
+					name="confirm"
+					value="内容確認ページへ"
+					class="btn btn-secondary btn-lg">
+			</div>
+		</form>
+	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

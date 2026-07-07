@@ -37,16 +37,16 @@ if (!isset($form_data['email']) && !$form_data['email'] || !filter_var($form_dat
 	$errors[] = '【メールアドレス】は必須項目です';
 }
 
-if (!isset($form_data['tel']) && !$form_data['tel'] || !preg_match('/^0[0-9]{9,10}\z/', $form_data['tel'])) {
-	$errors[] = '【電話番号】は必須項目（ハイフン無し）です';
+if (!isset($form_data['tel']) && !$form_data['tel'] || !preg_match('/\A0\d{1,4}-\d{1,4}-\d{3,4}\z/', $form_data['tel'])) {
+	$errors[] = '【電話番号】は必須項目です（ハイフン含め13桁）';
 }
 
-if (!isset($form_data["postal_code_1"]) && !$form_data['postal_code_1'] || !preg_match('/\A\d{3}\z/', $form_data['postal_code_1'])) {
-	$errors[] = '【郵便番号】は必須項目（3桁）です';
+if (!isset($form_data["postal_code"]) && !$form_data['postal_code'] || !preg_match('/\A\d{3}-\d{4}\z/', $form_data['postal_code'])) {
+	$errors[] = '【郵便番号】は必須項目です（ハイフン含め8桁）';
 }
 
-if (!isset($form_data['postal_code_2']) && !$form_data['postal_code_2'] || !preg_match('/\A\d{4}\z/', $form_data['postal_code_2'])) {
-	$errors[] = '【郵便番号】は必須項目（4桁）です';
+if (!isset($form_data['address']) && !$form_data['address']) {
+	$errors[] = '【ご住所】は必須項目です';
 }
 
 if ($form_data['content'] === '') {
@@ -73,71 +73,74 @@ if ($errors) {
 </head>
 
 <body class="bg-light">
-	<p class="text-center">以下の内容でよろしければ【送信】ボタンをクリックしてください。</p>
-
-	<!-- 入力内容確認画面 -->
-	<form action="../complete/index.php" method="post">
-		<table class="table table-striped-columns shadow-sm p-3 mb-5 bg-body-tertiary rounded">
-			<tbody>
-				<tr>
-					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">お名前</th>
-					<td><?= html_escape($form_data['name']); ?></td>
-					<input type="hidden" name="name" value="<?= html_escape($form_data['name']); ?>">
-				</tr>
-				<tr>
-					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">フリガナ</th>
-					<td><?= html_escape($form_data['kana']); ?></td>
-					<input type="hidden" name="kana" value="<?= html_escape($form_data['kana']); ?>">
-				</tr>
-				<tr>
-					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">メールアドレス</th>
-					<td><?= html_escape($form_data['email']); ?></td>
-					<input type="hidden" name="email" value="<?= html_escape($form_data['email']); ?>">
-				</tr>
-				<tr>
-					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">電話番号</th>
-					<td><?= html_escape($form_data['tel']); ?></td>
-					<input type="hidden" name="tel" value="<?= html_escape($form_data['tel']); ?>">
-				</tr>
-				<tr>
-					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">ご住所</th>
-					<td>
-						<span>〒</span>
-						<?= html_escape($form_data['postal_code_1']); ?>
-						<input type="hidden" name="postal_code_1" value="<?= html_escape($form_data['postal_code_1']); ?>">
-						<span>-</span>
-						<?= html_escape($form_data['postal_code_2']); ?><br>
-						<input type="hidden" name="postal_code_2" value="<?= html_escape($form_data['postal_code_2']); ?>">
-						<?= html_escape($form_data['address']); ?>
-					</td>
-					<input type="hidden" name="address" value="<?= html_escape($form_data['address']); ?>">
-				</tr>
-				<tr>
-					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">性別</th>
-					<td>
-						<?= html_escape($genders[$form_data['gender'] ?? ''] ?? ''); ?>
-					</td>
-					<input type="hidden" name="gender" value="<?= html_escape($form_data['gender'] ?? '') ?>">
-				</tr>
-				<tr>
-					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">応募内容</th>
-					<td><?= html_escape($contents[$form_data['content'] ?? ''] ?? '') ?></td>
-					<input type="hidden" name="content" value="<?php echo $form_data['content']; ?>">
-				</tr>
-				<tr>
-					<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">ご質問等</th>
-					<td><?= nl2br(html_escape($form_data['message'])); ?></td>
-					<input type="hidden" name="message" value="<?php echo $form_data['message']; ?>">
-				</tr>
-			</tbody>
-		</table>
-		<!-- Back to Input Page -->
-		<button type="button" class="btn btn-secondary" onclick="history.back()">
-			<i class="bi bi-arrow-left-circle-fill"></i>戻る
-		</button>
-		<div class="d-grid gap-2 col-6 mx-auto">
-			<input type="submit" name="complete" value="送信" class="btn btn-secondary">
-		</div>
-	</form>
+	<div class="container-lg pt-5 pb-5">
+		<p class="pb-4 mb-0">以下の内容でよろしければ【送信】ボタンをクリックしてください。</p>
+		<!-- 入力内容確認画面 -->
+		<form action=" ../complete/index.php" method="post">
+			<table class="table table-striped-columns p-3 mb-5 bg-body-tertiary rounded">
+				<tbody>
+					<tr>
+						<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">お名前</th>
+						<td><?= html_escape($form_data['name']); ?></td>
+						<input type="hidden" name="name" value="<?= html_escape($form_data['name']); ?>">
+					</tr>
+					<tr>
+						<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">フリガナ</th>
+						<td><?= html_escape($form_data['kana']); ?></td>
+						<input type="hidden" name="kana" value="<?= html_escape($form_data['kana']); ?>">
+					</tr>
+					<tr>
+						<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">メールアドレス</th>
+						<td><?= html_escape($form_data['email']); ?></td>
+						<input type="hidden" name="email" value="<?= html_escape($form_data['email']); ?>">
+					</tr>
+					<tr>
+						<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">電話番号</th>
+						<td><?= html_escape($form_data['tel']); ?></td>
+						<input type="hidden" name="tel" value="<?= html_escape($form_data['tel']); ?>">
+					</tr>
+					<tr>
+						<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">ご住所</th>
+						<td>
+							<span>〒</span>
+							<?= html_escape($form_data['postal_code']); ?>
+							<br />
+							<?= html_escape($form_data['address']); ?>
+						</td>
+						<input type="hidden" name="postal_code" value="<?= html_escape($form_data['postal_code']); ?>">
+						<input type="hidden" name="address" value="<?= html_escape($form_data['address']); ?>">
+					</tr>
+					<tr>
+						<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">性別</th>
+						<td>
+							<?= html_escape($genders[$form_data['gender'] ?? ''] ?? ''); ?>
+						</td>
+						<input type="hidden" name="gender" value="<?= html_escape($form_data['gender'] ?? '') ?>">
+					</tr>
+					<tr>
+						<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">応募内容</th>
+						<td><?= html_escape($contents[$form_data['content'] ?? ''] ?? '') ?></td>
+						<input type="hidden" name="content" value="<?php echo $form_data['content']; ?>">
+					</tr>
+					<tr>
+						<th scope="row" class="table-secondary col-xs-3 col-ms-3 col-md-4 col-lg-4">ご質問等</th>
+						<td><?= nl2br(html_escape($form_data['message'])); ?></td>
+						<input type="hidden" name="message" value="<?php echo $form_data['message']; ?>">
+					</tr>
+				</tbody>
+			</table>
+			<div class="d-flex mx-auto gap-2 w-50">
+				<!-- Back to Input Page -->
+				<div class="d-grid gap-2 col-6 mx-auto">
+					<button type="button" class="btn btn-outline-secondary btn-lg gap-2" onclick="history.back()">
+						戻る
+					</button>
+				</div>
+				<div class="d-grid gap-2 col-6 mx-auto">
+					<input type="submit" name="complete" value="送信" class="btn btn-secondary btn-lg">
+				</div>
+			</div>
+		</form>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>

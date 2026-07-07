@@ -64,7 +64,7 @@ try {
 		':kana' => $form_data['kana'],
 		':email' => $form_data['email'],
 		':tel' => $form_data['tel'],
-		':postal_code' => $form_data['postal_code_1'] . $form_data['postal_code_2'],
+		':postal_code' => $form_data['postal_code'],
 		':address' => $form_data['address'],
 		':gender' => $gender,
 		':content' => $form_data['content'],
@@ -120,7 +120,7 @@ $posts = [
 	],
 	4 => [
 		'label' => '住所',
-		'value' => html_escape('〒' . $form_data['postal_code_1'] . '-' . $form_data['postal_code_2'] . ' ' . $form_data['address']),
+		'value' => html_escape('〒' . $form_data['postal_code']  . "\n" . $form_data['address']),
 	],
 	5 => [
 		'label' => '性別',
