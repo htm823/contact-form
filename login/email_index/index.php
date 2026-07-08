@@ -87,13 +87,13 @@ $get = $_GET;
 			$count_stmt->execute($params);
 			$total = $count_stmt->fetchColumn();
 
-			$page = max(1, (int) $get['page'] ?? 1);
+			$page = max(1, (int) ($get['page'] ?? 1));
 			$page_size = 5;
 			$total_pages = ceil($total / $page_size);
 			$start = ($page - 1) * $page_size;
 
 			// Sorting
-			$sort_order = strtoupper($get['order']) ?? 'DESC';
+			$sort_order = strtoupper($get['order'] ?? 'DESC');
 
 			if (!in_array($sort_order, ['ASC', 'DESC'], true)) {
 				$sort_order = 'DESC';
