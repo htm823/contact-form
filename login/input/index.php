@@ -1,10 +1,11 @@
 <?php
 
-require_once(__DIR__ . '/../config/init.php');
-
-ini_set('display_errors', 0);
+require_once(__DIR__ . '/../../lib/functions/utils.php');
 
 session_start();
+
+$form_data = $_SESSION['POST'] ?? [];
+$errors = $_SESSION['errors'] ?? [];
 
 ?>
 
@@ -15,46 +16,54 @@ session_start();
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	<title>ログインページ</title>
 </head>
 
-<body class="text-bg-light p-3">
-	<form action="../dashboard/index.php" method="POST">
-		<!-- エラーメッセージ -->
-		<?php if ($_SESSION["errors"]) {
-			foreach ($_SESSION["errors"] as $error) { ?>
-				<div class="bg-danger text-white w-50 shadow-sm">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-						<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-					</svg>
-					<?php echo $error; ?>
+<body class="text-bg-light">
+	<div class="container-lg pt-5 pb-5">
+		<form action="../auth/index.php" method="POST">
+			<!-- Error messages -->
+			<?php if ($errors) { ?>
+				<div class="error-messages pb-4">
+					<?php foreach ($errors as $error) { ?>
+						<p class="text-danger mb-2"><i class="bi bi-exclamation-circle"></i><?= $error; ?></p>
+					<?php } ?>
 				</div>
 			<?php } ?>
-		<?php } ?>
-		<table class="table table-borderless">
-			<tbody>
-				<div class="form-group">
+			<table class="table table-borderless">
+				<tbody>
 					<tr class="table-light">
-						<th scope="row">メールアドレス</th>
+						<th scope="row">ID</th>
 						<td>
-							<input class="form-control" name="email" type="text" placeholder="メールアドレスを入力" value="<?php echo $_SESSION["POST"]["email"] ?>">
+							<input
+								class="form-control"
+								name="email"
+								type="email"
+								autocomplete="off"
+								placeholder="メールアドレスを入力"
+								value="<?= old('email', $form_data); ?>">
 						</td>
 					</tr>
-				</div>
-				<div class="form-group">
 					<tr class="table-light">
 						<th scope="row">パスワード</th>
 						<td>
-							<input class="form-control" name="password" type="text" placeholder="パスワードを入力（8桁）" value="<?php echo $_SESSION["POST"]["password"] ?>">
+							<input
+								class="form-control"
+								name="password"
+								type="password"
+								autocomplete="off"
+								placeholder="パスワードを入力（英数字8桁）"
+								value="<?= old('password', $form_data); ?>">
 						</td>
 					</tr>
-				</div>
-			</tbody>
-		</table>
-		<div class="d-grid gap-2 col-6 mx-auto">
-			<input type="submit" name="login" value='ログイン' class="btn btn-secondary">
-		</div>
-	</form>
+				</tbody>
+			</table>
+			<div class="d-grid gap-2 col-6 mx-auto pt-4">
+				<input type="submit" name="login" value='ログイン' class="btn btn-secondary btn-lg">
+			</div>
+		</form>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 
