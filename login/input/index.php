@@ -7,6 +7,8 @@ session_start();
 $form_data = $_SESSION['POST'] ?? [];
 $errors = $_SESSION['errors'] ?? [];
 
+unset($_SESSION['POST'], $_SESSION['errors']);
+
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +24,7 @@ $errors = $_SESSION['errors'] ?? [];
 
 <body class="text-bg-light">
 	<div class="container-lg pt-5 pb-5">
+		<h1 class="fs-3 mb-5">ログイン</h1>
 		<form action="../auth/index.php" method="POST">
 			<!-- Error messages -->
 			<?php if ($errors) { ?>
