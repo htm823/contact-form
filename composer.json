@@ -1,11 +1,6 @@
 {
 	"name": "hatsumishimizu/contact-form",
 	"description": "composer require vlucas/phpdotenv phpmailer/phpmailer",
-	"autoload": {
-		"psr-4": {
-			"Hatsumishimizu\\ContactForm\\": "src/"
-		}
-	},
 	"license": "proprietary",
 	"require": {
 		"vlucas/phpdotenv": "^5.6",
