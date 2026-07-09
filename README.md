@@ -19,8 +19,10 @@ The preview demonstrates:
 - Search, sorting, and pagination features
 
 ### Public Contact Form
+<img width="600" height="371" alt="contact-form" src="https://github.com/user-attachments/assets/d9c8f0eb-4585-42e1-8bb6-70b662b3b0d0" />
 
 ### Administrator Login
+<img width="600" height="371" alt="administration" src="https://github.com/user-attachments/assets/018fe05e-d96e-492c-93a1-67800bf0fbea" />
 
 ## Features
 
