@@ -65,6 +65,28 @@ The preview demonstrates:
 - User input is escaped before output to mitigate XSS attacks.
 - Administrative pages are protected by session-based authentication.
 
+## Mail Setup
+
+This project uses [Mailtrap](https://mailtrap.io/) for email testing in the local development environment.
+
+To enable email sending:
+
+1. Create a Mailtrap account.
+2. Create a testing inbox.
+3. Copy .env.example to .env.
+4. Add your Mailtrap SMTP credentials to .env.
+
+Example:
+
+```
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+```
+
+Emails are captured by Mailtrap and are not delivered to real email addresses.
+
 ## Demo Account
 
 User registration is intentionally unavailable, as this project is intended solely as a personal portfolio.
@@ -92,6 +114,22 @@ To see the read/unread status in action, first submit a new enquiry using the pu
 3. Configure the database connection in `config/init.php`.
 4. Start Apache and MySQL.
 5. Access the application through your local development environment.
+
+## Environment Variables
+
+The following environment variables are required:
+
+```
+DB_HOST=
+DB_NAME=
+DB_USER=
+DB_PASSWORD=
+
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+```
 
 ## Future Improvements
 
