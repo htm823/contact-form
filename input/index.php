@@ -1,12 +1,18 @@
 <?php
 
 require_once(__DIR__ . '/../lib/functions/utils.php');
-require_once(__DIR__ . '/../config/init.php');
 
 session_start();
 
-$form_data = $_SESSION['POST'] ?? [];
-$errors    = $_SESSION['errors'] ?? [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	$form_data = $_POST;
+} else {
+	$form_data = $_SESSION['POST'] ?? [];
+}
+
+$errors = $_SESSION['errors'] ?? [];
+
+unset($_SESSION['POST'], $_SESSION['errors']);
 
 // Subjects
 $contents = [
@@ -31,6 +37,7 @@ $contents = [
 
 <body class="bg-light">
 	<div class="container-lg pt-5 pb-5">
+		<h1 class="fs-3 mb-5">お問い合わせフォーム</h1>
 		<form action="../confirm/index.php" method="post" class="h-adr">
 			<input type="hidden" class="p-country-name" value="Japan">
 			<p class="pb-4 mb-0">
@@ -46,7 +53,7 @@ $contents = [
 				</div>
 			<?php } ?>
 
-			<table class="table table-borderless bg-body-tertiary rounded">
+			<table class="table table-borderless">
 				<tbody>
 					<tr>
 						<th scope="row"><span class="text-danger">*</span>お名前</th>
