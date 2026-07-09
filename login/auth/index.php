@@ -61,7 +61,7 @@ try {
 
 	// For security, do not distinguish between an invalid email and an invalid password.
 	// Password hashing will be implemented later.
-	if (!$member || $password !== $member['password']) {
+	if (!$member || !password_verify($password, $member['password'])) {
 		$errors[] = 'メールアドレスまたはパスワードが正しくありません';
 	} else {
 		$session['id'] = $member['id'];
