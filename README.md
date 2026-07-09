@@ -2,13 +2,25 @@
 
 A contact management system built with PHP and MySQL.
 
-Anyone can submit an enquiry through the public contact form. Administrators can sign in using a demo account to view, search, and manage submitted enquiries.
+Users can submit enquiries through the public contact form. Administrators can sign in using a demo account to view, search, and manage submitted enquiries locally.
 
-## Demo
+## Preview
 
-![Contact Form Demo](assets/img/contact-form-demo.gif)
+The application is not deployed.  
+Please refer to the GIF below to see the application flow.
 
-![Adminitration Demo](assets/img/contact-form-demo.gif)
+The preview demonstrates:
+
+- Public contact form submission
+- Administrator login
+- Enquiry list management
+- Enquiry details view
+- Read/Unread status update
+- Search, sorting, and pagination features
+
+### Public Contact Form
+
+### Administrator Login
 
 ## Features
 

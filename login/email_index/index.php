@@ -28,10 +28,7 @@ if (!$is_logged_in) {
 	<meta property="og:title" content="Contact Form">
 	<meta property="og:description" content="A contact management system built with PHP and MySQL.">
 	<meta property="og:type" content="website">
-	<meta property="og:image" content="https://contact-form.up.railway.app/assets/img/ogp.png">
-	<meta property="og:url" content="https://contact-form.up.railway.app">
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="https://contact-form.up.railway.app/assets/img/ogp.png">
 	<meta name="description" content="A contact management system built with PHP and MySQL.">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -162,7 +159,7 @@ if (!$is_logged_in) {
 									<td><?= html_escape($record['tel']); ?></td>
 									<td>
 										<div class='d-grid gap-2 d-md-block'>
-											<a href="../email_show/index.php?id=<?= $record['id']; ?>" class='link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover'>詳細ページ</a>
+											<a href="../email_show/index.php?id=<?= $record['id']; ?>&page=<?= $page; ?>&order=<?= $sort_order; ?>&search=<?= urlencode($search_term); ?>" class='link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover'>詳細ページ</a>
 										</div>
 									</td>
 								</tr>

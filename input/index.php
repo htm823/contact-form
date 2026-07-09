@@ -32,10 +32,7 @@ $contents = [
 	<meta property="og:title" content="Contact Form">
 	<meta property="og:description" content="A contact management system built with PHP and MySQL.">
 	<meta property="og:type" content="website">
-	<meta property="og:image" content="https://contact-form.up.railway.app/assets/img/ogp.png">
-	<meta property="og:url" content="https://contact-form.up.railway.app">
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="https://contact-form.up.railway.app/assets/img/ogp.png">
 	<meta name="description" content="A contact management system built with PHP and MySQL.">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">

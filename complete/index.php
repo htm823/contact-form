@@ -10,6 +10,12 @@ use PHPMailer\PHPMailer\Exception;
 
 session_start();
 
+$contents = [
+	'full-time' => 'フルタイム',
+	'part-time' => 'パートタイム',
+	'internship' => 'インターンシップ',
+];
+
 // Check POST data existence
 $form_data = $_POST ?? [];
 
@@ -67,7 +73,7 @@ try {
 		':postal_code' => $form_data['postal_code'],
 		':address' => $form_data['address'],
 		':gender' => $gender,
-		':content' => $form_data['content'],
+		':content' => $contents[$form_data['content']],
 		':question' => $form_data['message'] ?? '',
 		':created_at' => $now,
 		':updated_at' => $now,

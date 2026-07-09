@@ -15,6 +15,10 @@ if (!isset($session['id'])) {
 
 $get = $_GET;
 
+$page = $get['page'] ?? 1;
+$order = $get['order'] ?? 'DESC';
+$search = $get['search'] ?? '';
+
 // Subjects
 $contents = [
 	'full-time' => 'フルタイム',
@@ -56,10 +60,7 @@ try {
 	<meta property="og:title" content="Contact Form">
 	<meta property="og:description" content="A contact management system built with PHP and MySQL.">
 	<meta property="og:type" content="website">
-	<meta property="og:image" content="https://contact-form.up.railway.app/assets/img/ogp.png">
-	<meta property="og:url" content="https://contact-form.up.railway.app">
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="https://contact-form.up.railway.app/assets/img/ogp.png">
 	<meta name="description" content="A contact management system built with PHP and MySQL.">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<link rel="icon" href="../../assets/img/favicon.ico">
@@ -114,7 +115,7 @@ try {
 							</tr>
 							<tr>
 								<th scope="row" class="table-secondary">応募内容</th>
-								<td><?= html_escape($contents[$mails['content']] ?? ''); ?></td>
+								<td><?= html_escape($mails['content'] ?? ''); ?></td>
 							</tr>
 							<tr>
 								<th scope="row" class="table-secondary">質問</th>
@@ -129,7 +130,11 @@ try {
 				<?php } else { ?>
 					<p class="mt-5">データが存在しません</p>
 				<?php } ?>
-				<button class="btn btn-secondary btn-lg" type="button" onclick="history.back()">戻る</button>
+				<a
+					href="../email_index/index.php?page=<?= $page; ?>&order=<?= $order; ?>&search=<?= urlencode($search); ?>"
+					class="btn btn-secondary btn-lg">
+					戻る
+				</a>
 			</div>
 		</main>
 	</div>
