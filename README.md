@@ -4,6 +4,13 @@ A contact management system built with PHP and MySQL.
 
 Anyone can submit an enquiry through the public contact form. Administrators can sign in using a demo account to view, search, and manage submitted enquiries.
 
+## Demo
+### Contact Form
+<img width="400" height="247" alt="contact-form" src="https://github.com/user-attachments/assets/3240ce63-f3e4-493d-a932-db4e0a7f879c" />
+
+### Administration
+<img width="400" height="247" alt="administration" src="https://github.com/user-attachments/assets/9c27c9c7-70e9-4e1b-80b3-175efc7cb055" />
+
 ## Features
 
 ### Public
