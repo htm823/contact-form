@@ -74,13 +74,23 @@ if ($errors) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:title" content="Contact Form">
+	<meta property="og:description" content="A contact management system built with PHP and MySQL.">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="https://contact-form.up.railway.app/assets/img/ogp.png">
+	<meta property="og:url" content="https://contact-form.up.railway.app">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="https://contact-form.up.railway.app/assets/img/ogp.png">
+	<meta name="description" content="A contact management system built with PHP and MySQL.">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-	<title>確認ページ</title>
+	<link rel="icon" href="../assets/img/favicon.ico">
+	<title>送信内容の確認｜お問い合わせフォーム</title>
 </head>
 
 <body class="bg-light">
 	<div class="container-lg pt-5 pb-5">
+		<h1 class="fs-3 mb-5">送信内容の確認</h1>
 		<p class="mb-0">以下の内容でよろしければ【送信】ボタンをクリックしてください。</p>
 		<form action=" ../complete/index.php" method="post">
 			<table class="table mb-5 mt-5">
