@@ -7,6 +7,16 @@ session_start();
 
 $get = $_GET;
 
+$session = $_SESSION ?? [];
+
+// Check Login Status
+$is_logged_in = isset($session['id']);
+
+if (!$is_logged_in) {
+	header("Location: ../input/index.php");
+	exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +48,7 @@ $get = $_GET;
 </head>
 
 <body class="bg-light d-flex bd-highlight">
-	<div class="align-self-start p-5 flex-shrink-0 bd-highlight border-end">
-		<div class="p-2">
-			<a href="../dashboard/index.php" style="text-decoration: none; color: inherit;">ダッシュボード</a>
-		</div>
+	<div class="align-self-start p-5 flex-shrink-0 bd-highlight border-end vh-100">
 		<div class="p-2">
 			<a href="index.php" class="fw-bold" style="text-decoration: none; color: inherit">メール受信</a>
 		</div>

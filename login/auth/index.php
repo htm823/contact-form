@@ -91,5 +91,5 @@ if ($errors) {
 
 $_SESSION = $session;
 
-header("Location: ../dashboard/index.php");
+header("Location: ../email_index/index.php");
 exit;
