@@ -1,6 +1,6 @@
 # Contact Form & Dashboard
 
-🇬🇧 English | [🇯🇵 Japanese](README.js.md)
+🇬🇧 English | [🇯🇵 Japanese](README.ja.md)
 
 A contact management system built with PHP and MySQL.
 
