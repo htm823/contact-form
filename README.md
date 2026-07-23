@@ -95,6 +95,7 @@ The same session-based approach is used for administrator authentication, mainta
 - Administrative pages are protected by session-based authentication.
 
 ## Mail Setup
+
 This project uses [Mailtrap](https://mailtrap.io/) for email testing in the local development environment.
 
 To enable email sending:
